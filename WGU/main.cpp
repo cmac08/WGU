@@ -35,6 +35,7 @@ int main()
 		cout << "Display the students: " << endl;
 	for (int i = 0; i < numberOfStudents; ++i) {
 		classRoster.parse(studentData[i]);
+		//quick change
 	}
 	
 	classRoster.printAll();
