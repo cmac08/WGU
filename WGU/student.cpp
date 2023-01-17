@@ -83,6 +83,6 @@ void Student::print()
 	cout << this->daysToComplete[0] << '\t';
 	cout << this->daysToComplete[1] << '\t';
 	cout << this->daysToComplete[2] << '\t';
-	cout << degreeProgramStrings[(int)this->degreeProgram];
+	cout << degreeProgramStrings[(int)this->getDegreeProgram()];
 	cout << endl;
 }

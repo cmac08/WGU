@@ -28,7 +28,7 @@ private:
 public: //method constructors
 Student();
 	//Full Constructor
-Student(string studentID, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degeeProgram);
+Student(string studentID, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degreeProgram);
 ~Student(); //Destructor
 
 //getters
