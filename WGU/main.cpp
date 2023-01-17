@@ -2,7 +2,7 @@
 //  main.cpp
 //  c867
 //
-//  Created by McGarry, Christine on 12/26/22.
+//  Created by M, Christine on 12/26/22.
 //
 #pragma GCC diagnostic pop
 
@@ -18,8 +18,8 @@ int main()
 	cout << "-------------------------------------" << endl;
 	cout << "C867-Scripting & Programming: Applications" << endl;
 	cout << "Language:	C++" << endl;
-	cout << "Student ID:	000235570" << endl;
-	cout << "Name: Christine McGarry" << endl;
+	cout << "Student ID:" << endl;
+	cout << "Name: Christine M" << endl;
 	cout << "-------------------------------------" << endl;
 
 	const string studentData[] = {
@@ -27,7 +27,7 @@ int main()
 		"A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
 		"A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
 		"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
-		"A5,Christine, McGarry,cmcgarr@wgu.edu,37,22,19,40,SOFTWARE"
+		"A5,Christine, M,cmcgarr@wgu.edu,37,22,19,40,SOFTWARE"
 	};
 	
 	Roster classRoster;

@@ -2,7 +2,7 @@
 //  degree.h
 //  c867
 //
-//  Created by McGarry, Christine on 12/29/22.
+//  Created by M, Christine on 12/29/22.
 //
 
 //#ifndef degree_h

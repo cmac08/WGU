@@ -2,7 +2,7 @@
 //  student.h
 //  c867
 //
-//  Created by McGarry, Christine on 12/26/22.
+//  Created by M, Christine on 12/26/22.
 //
 
 #ifndef student_h

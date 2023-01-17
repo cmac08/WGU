@@ -28,54 +28,34 @@ void Roster::add(string studentId, string firstName, string lastName, string ema
 
 void Roster::parse(string row)
 {
-	DegreeProgram dp = DegreeProgram::UNDECIDED;//assign default
-	if (row.back() == 'E')
-		dp = DegreeProgram::SOFTWARE;
-	else if (row.back() == 'K')
-		dp = DegreeProgram::NETWORK;
-	else if (row.back() =='Y')
-		dp = DegreeProgram::SECURITY;
-	
-	string parsed[9];
-	int rhs = 0;
-	int lhs = 0;
-	for (int i = 0; i <= 8; i++) {
-		rhs = row.find(",", lhs);
-		parsed[i] = row.substr(lhs, rhs - lhs);
-//		cout << parsed[i] << endl; //print what is held in the string. 
-		lhs = rhs + 1;
-	}
+	vector<string> result;
+	DegreeProgram dp = DegreeProgram::UNDECIDED;
+		std::stringstream ss(row);
 
-	add(parsed[0], parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), dp);
+		while (ss.good()) {
+			string subStr;
+			std::getline(ss, subStr, ',');
+			result.push_back(subStr);
+		}
+		if (result[8] == "SECURITY") {
+			dp = DegreeProgram::SECURITY;
+		}
+		if (result[8] == "NETWORK") {
+			dp = DegreeProgram::NETWORK;
+		}
+		if (result[8] == "SOFTWARE") {
+			dp = DegreeProgram::SOFTWARE;
+		}
+
+	add(result.at(0), result.at(1), result.at(2), result.at(3), stoi(result.at(4)), stoi(result.at(5)), stoi(result.at(6)), stoi(result.at(7)), dp);
 }
-//	vector<string> result;
-//	DegreeProgram dp = DegreeProgram::UNDECIDED;
-//		std::stringstream ss(row);
-//
-//		while (ss.good()) {
-//			string subStr;
-//			std::getline(ss, subStr, ',');
-//			result.push_back(subStr);
-//		}
-//		if (result[8] == "SECURITY") {
-//			dp = DegreeProgram::SECURITY;
-//		}
-//		if (result[8] == "NETWORK") {
-//			dp = DegreeProgram::NETWORK;
-//		}
-//		if (result[8] == "SOFTWARE") {
-//			dp = DegreeProgram::SOFTWARE;
-//		}
-//
-//	add(result.at(0), result.at(1), result.at(2), result.at(3), stoi(result.at(4)), stoi(result.at(5)), stoi(result.at(6)), stoi(result.at(7)), dp);
-
 
 void Roster::printAll()
 {
 	Student::printHeader();
 	for (int i = 0; i <= lastIndex; i++) {
-		//Roster::getStudents()[i]->print();
-		Roster::classRosterArray[i]->print();
+		Roster::getStudents()[i]->print();
+		//Roster::classRosterArray[i]->print();
 	}
 }
 

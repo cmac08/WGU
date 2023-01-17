@@ -2,8 +2,6 @@
 //  student.cpp
 //  c867
 //
-//  Created by McGarry, Christine on 12/29/22.
-//
 
 #include <stdio.h>
 #include "student.h"
