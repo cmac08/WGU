@@ -18,36 +18,52 @@ using namespace std;
 
 Roster::Roster(){};
 
-void Roster::add(string studentId, string firstName, string lastName, string email, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeprogram)
+void Roster::add(string studentId, string firstName, string lastName, string email, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
 {
 	int daysInCourseArray[3] = {daysInCourse1, daysInCourse2, daysInCourse3};
-	classRosterArray[++lastIndex] = new Student(studentId, firstName, lastName, email, age, daysInCourseArray, degreeprogram);
+	classRosterArray[++lastIndex] = new Student(studentId, firstName, lastName, email, age, daysInCourseArray, degreeProgram);
 	cout << "Student added to class roster at row " << lastIndex + 1 << endl;
 	
 }
 
 void Roster::parse(string row)
 {
-	vector<string> result;
-	DegreeProgram dp = DegreeProgram::UNDECIDED;
-		std::stringstream ss(row);
-
-		while (ss.good()) {
-			string subStr;
-			std::getline(ss, subStr, ',');
-			result.push_back(subStr);
+	stringstream ss(row);
+	string token;
+	string studentData[9];
+	int i = 0;
+	while (getline(ss, token, ',')) {
+		studentData[i++] = token;
+	}
+	try {
+		int age = stoi(studentData[4]);
+		DegreeProgram degreeProgram;
+		string degreeString = studentData[8];
+		cout << degreeString << endl;
+		std::transform(degreeString.begin(), degreeString.end(), degreeString.begin(), ::toupper);
+		if (degreeString == "SOFTWARE") {
+			degreeProgram = DegreeProgram::SOFTWARE;
 		}
-		if (result[8] == "SECURITY") {
-			dp = DegreeProgram::SECURITY;
+		else if (degreeString == "SECURITY") {
+			degreeProgram = DegreeProgram::SECURITY;
 		}
-		if (result[8] == "NETWORK") {
-			dp = DegreeProgram::NETWORK;
+		else if (degreeString == "NETWORK") {
+			degreeProgram = DegreeProgram::NETWORK;
 		}
-		if (result[8] == "SOFTWARE") {
-			dp = DegreeProgram::SOFTWARE;
+		else {
+			degreeProgram = DegreeProgram::UNDECIDED;
 		}
-
-	add(result.at(0), result.at(1), result.at(2), result.at(3), stoi(result.at(4)), stoi(result.at(5)), stoi(result.at(6)), stoi(result.at(7)), dp);
+		add(studentData[0], studentData[1], studentData[2], studentData[3], age, stoi(studentData[5]), stoi(studentData[6]), stoi(studentData[7]), degreeProgram);
+	}
+	catch (invalid_argument& e) {
+		cout << "Invalid argument: " << e.what() << endl;
+	}
+	catch (out_of_range& e) {
+		cout << "Out of range: " << e.what() << endl;
+	}
+	catch (...) {
+		cout << "Unexpected Error Time" << endl;
+	}
 }
 
 void Roster::printAll()
