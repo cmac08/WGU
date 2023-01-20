@@ -24,8 +24,10 @@ Roster::Roster(){};
 void Roster::add(string studentId, string firstName, string lastName, string email, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
 {
 	int daysInCourseArray[3] = {daysInCourse1, daysInCourse2, daysInCourse3};
+	string stupidDegree = degreeProgramStrings[(int)degreeProgram];
+	
 	classRosterArray[++lastIndex] = new Student(studentId, firstName, lastName, email, age, daysInCourseArray, degreeProgram);
-	cout << "Student added to class roster at row " << lastIndex + 1 << endl;
+	cout << "Student added to class roster at row " << lastIndex + 1 << "with the following degree : " << stupidDegree << endl;
 	
 }
 
@@ -48,15 +50,13 @@ void Roster::parse(string row)
 		int age = stoi(studentData[4]);
 		DegreeProgram degreeProgram = DegreeProgram::UNDECIDED;
 		string degreeString = studentData[8];
-		cout << degreeString << endl;
-		
 		transform(degreeString.begin(), degreeString.end(), degreeString.begin(), ::toupper);
+		
 		if (Roster_enum_map.count(degreeString)) {
-			cout << degreeString << endl;
 			degreeProgram = Roster_enum_map[degreeString];
 			
 			string newString = degreeProgramStrings[(int)degreeProgram];
-			cout << "What is the degreeProgram translation" <<  newString << endl;
+			cout << "Degree Program enum assigned in Parse Method: " <<  newString << endl;
 			
 		} else {
 			cout << "Invalid input" << endl;

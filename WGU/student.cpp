@@ -31,21 +31,20 @@ Student::Student(string studentId, string firstName, string lastName, string ema
 	for (int i = 0; i < daysToCompleteArraySize; i++) {
 		this->daysToComplete[i] = daysToComplete[i];
 	}
+	string newString = degreeProgramStrings[(int)degreeProgram];
+	cout << "Constructor Degree Program: " <<  newString << endl;
 	switch (degreeProgram) {
 		   case DegreeProgram::SECURITY:
-			   std::cout << "--SECURITY" << std::endl;
 				this->degreeProgram = DegreeProgram::SECURITY;
 				break;
 		   case DegreeProgram::NETWORK:
-			   std::cout << "--NETWORK" << std::endl;
 				this->degreeProgram = DegreeProgram::NETWORK;
 				break;
 		   case DegreeProgram::SOFTWARE:
-			   std::cout << "--SOFTWARE" << std::endl;
 				this->degreeProgram = DegreeProgram::SOFTWARE;
 				break;
 		   default:
-			   std::cout << "--UNDECIDED" << std::endl;
+			   cout << "--UNDECIDED" << endl;
 	   }
 }
 
