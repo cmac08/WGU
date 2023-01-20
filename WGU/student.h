@@ -50,7 +50,6 @@ void setDaysToComplete(const int days[]);
 void setDegreeProgram(DegreeProgram degreeProgram);
 
 static void printHeader();
-
 void print();
 
 };

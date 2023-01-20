@@ -31,7 +31,7 @@ public:
 	void printAverageDaysInCourse(string studentId);
 	void printAll();
 	void printInvalidEmails();
-	void printByDegreeProgram(DegreeProgram degreeProgram); 
+	void printByDegreeProgramType(DegreeProgram degreeProgram); 
 	
 	void parse(string row);
 	~Roster();

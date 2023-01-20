@@ -4,12 +4,10 @@
 //
 //  Created by M, Christine on 12/26/22.
 //
-#pragma GCC diagnostic pop
-
 #include <iostream>
 #include "roster.h"
 #include "student.h"
-#include "degree.h"
+//#include "degree.h"
 
 using namespace std;
 
@@ -33,7 +31,7 @@ int main()
 	Roster classRoster;
 	
 		cout << "Display the students: " << endl;
-	for (int i = 0; i < numberOfStudents; ++i) {
+	for (int i = 0; i < 5; ++i) {
 		classRoster.parse(studentData[i]);
 		//quick change
 	}
@@ -44,12 +42,12 @@ int main()
 	classRoster.printInvalidEmails();
 
 	cout << "Display the average length of days to complete: " << endl;
-	for (int i = 0; i < numberOfStudents; ++i) {
-			 classRoster.printAverageDaysInCourse(classRoster.getStudents()[i]->getStudentId());
+	for (int i = 0; i < 5; ++i) {
+		classRoster.printAverageDaysInCourse(classRoster.getStudents()[i]->getStudentId());
 	}
 
 		cout << "Display students by Degree Program: SOFTWARE" << endl;
-	classRoster.printByDegreeProgram(DegreeProgram::SOFTWARE);
+	classRoster.printByDegreeProgramType(DegreeProgram::SOFTWARE);
 
 	cout << "Removing student A3: " << endl;
 	classRoster.remove("A3");

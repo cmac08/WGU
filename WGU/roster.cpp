@@ -13,6 +13,7 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
+#include <algorithm>
 
 using namespace std;
 
@@ -28,6 +29,12 @@ void Roster::add(string studentId, string firstName, string lastName, string ema
 
 void Roster::parse(string row)
 {
+	map<string,DegreeProgram> Roster_enum_map{
+		{"SECURITY",DegreeProgram::SECURITY},
+		{"SOFTWARE",DegreeProgram::SOFTWARE},
+		{"NETWORK",DegreeProgram::NETWORK}
+	};
+
 	stringstream ss(row);
 	string token;
 	string studentData[9];
@@ -37,22 +44,20 @@ void Roster::parse(string row)
 	}
 	try {
 		int age = stoi(studentData[4]);
-		DegreeProgram degreeProgram;
+		DegreeProgram degreeProgram = DegreeProgram::UNDECIDED;
 		string degreeString = studentData[8];
 		cout << degreeString << endl;
-		std::transform(degreeString.begin(), degreeString.end(), degreeString.begin(), ::toupper);
-		if (degreeString == "SOFTWARE") {
-			degreeProgram = DegreeProgram::SOFTWARE;
+		
+		transform(degreeString.begin(), degreeString.end(), degreeString.begin(), ::toupper);
+		if (Roster_enum_map.count(degreeString)) {
+			cout << degreeString << endl;
+			degreeProgram = Roster_enum_map[degreeString];
+			
+		} else {
+			cout << "Invalid input" << endl;
 		}
-		else if (degreeString == "SECURITY") {
-			degreeProgram = DegreeProgram::SECURITY;
-		}
-		else if (degreeString == "NETWORK") {
-			degreeProgram = DegreeProgram::NETWORK;
-		}
-		else {
-			degreeProgram = DegreeProgram::UNDECIDED;
-		}
+		
+	
 		add(studentData[0], studentData[1], studentData[2], studentData[3], age, stoi(studentData[5]), stoi(studentData[6]), stoi(studentData[7]), degreeProgram);
 	}
 	catch (invalid_argument& e) {
@@ -75,7 +80,7 @@ void Roster::printAll()
 	}
 }
 
-void Roster::printByDegreeProgram(DegreeProgram degreeprogram) {
+void Roster::printByDegreeProgramType(DegreeProgram degreeprogram) {
 	Student::printHeader();
 	for (int i = 0; i <= lastIndex; i++)
 		if (Roster::getStudents()[i]->getDegreeProgram() == degreeprogram) classRosterArray[i]->print();
@@ -134,7 +139,7 @@ void Roster::remove(string studentID)
 
 Roster::~Roster()
 {
-	for (int i = 0; i < numberOfStudents; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		cout << "Destructor called for " << classRosterArray[i]->getStudentId() << endl;
 		delete classRosterArray[i];
