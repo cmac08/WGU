@@ -14,6 +14,8 @@
 #include <string>
 #include <iomanip>
 #include <algorithm>
+#include <map>
+
 
 using namespace std;
 
@@ -52,6 +54,9 @@ void Roster::parse(string row)
 		if (Roster_enum_map.count(degreeString)) {
 			cout << degreeString << endl;
 			degreeProgram = Roster_enum_map[degreeString];
+			
+			string newString = degreeProgramStrings[(int)degreeProgram];
+			cout << "What is the degreeProgram translation" <<  newString << endl;
 			
 		} else {
 			cout << "Invalid input" << endl;
