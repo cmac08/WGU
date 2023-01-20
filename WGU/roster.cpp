@@ -25,7 +25,6 @@ void Roster::add(string studentId, string firstName, string lastName, string ema
 {
 	int daysInCourseArray[3] = {daysInCourse1, daysInCourse2, daysInCourse3};
 	string stupidDegree = degreeProgramStrings[(int)degreeProgram];
-	
 	classRosterArray[++lastIndex] = new Student(studentId, firstName, lastName, email, age, daysInCourseArray, degreeProgram);
 	cout << "Student added to class roster at row " << lastIndex + 1 << "with the following degree : " << stupidDegree << endl;
 	
@@ -54,10 +53,6 @@ void Roster::parse(string row)
 		
 		if (Roster_enum_map.count(degreeString)) {
 			degreeProgram = Roster_enum_map[degreeString];
-			
-			string newString = degreeProgramStrings[(int)degreeProgram];
-			cout << "Degree Program enum assigned in Parse Method: " <<  newString << endl;
-			
 		} else {
 			cout << "Invalid input" << endl;
 		}
@@ -81,7 +76,6 @@ void Roster::printAll()
 	Student::printHeader();
 	for (int i = 0; i <= lastIndex; i++) {
 		Roster::getStudents()[i]->print();
-		//Roster::classRosterArray[i]->print();
 	}
 }
 

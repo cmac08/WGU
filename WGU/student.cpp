@@ -21,31 +21,18 @@ Student::Student() //Parameterless constructor sets all fields to default values
 	this->degreeProgram = DegreeProgram::UNDECIDED;
 }
 
-Student::Student(string studentId, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degeeProgram)
+Student::Student(string studentId, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram myDegeeProgram)
 {
 	this->studentId = studentId;
 	this->firstName = firstName;
 	this->lastName = lastName;
 	this->email = email;
 	this->age = age;
+	this->degreeProgram = myDegeeProgram;
 	for (int i = 0; i < daysToCompleteArraySize; i++) {
 		this->daysToComplete[i] = daysToComplete[i];
 	}
-	string newString = degreeProgramStrings[(int)degreeProgram];
-	cout << "Constructor Degree Program: " <<  newString << endl;
-	switch (degreeProgram) {
-		   case DegreeProgram::SECURITY:
-				this->degreeProgram = DegreeProgram::SECURITY;
-				break;
-		   case DegreeProgram::NETWORK:
-				this->degreeProgram = DegreeProgram::NETWORK;
-				break;
-		   case DegreeProgram::SOFTWARE:
-				this->degreeProgram = DegreeProgram::SOFTWARE;
-				break;
-		   default:
-			   cout << "--UNDECIDED" << endl;
-	   }
+	
 }
 
 Student::~Student() {}
@@ -97,20 +84,6 @@ void Student::print()
 	cout << this->daysToComplete[0] << '\t';
 	cout << this->daysToComplete[1] << '\t';
 	cout << this->daysToComplete[2] << '\t';
-	//cout << degreeProgramStrings[(int)this->getDegreeProgram()];
-	switch (degreeProgram) {
-		   case DegreeProgram::SECURITY:
-			   std::cout << "SECURITY" << std::endl;
-			   break;
-		   case DegreeProgram::NETWORK:
-			   std::cout << "NETWORK" << std::endl;
-			   break;
-		   case DegreeProgram::SOFTWARE:
-			   std::cout << "SOFTWARE" << std::endl;
-			   break;
-		   default:
-			   std::cout << "UNDECIDED" << std::endl;
-	   }
-	   std::cout << std::endl;
+	cout << degreeProgramStrings[(int)this->getDegreeProgram()];
 	cout << endl;
 }
